@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
-import requests
-import uuid
 from ebaysdk.finding import Connection
 from ebaysdk.exception import ConnectionError
+import requests
+import uuid
+import json
+import re
+import urllib2
 
 app = Flask(__name__)
 
@@ -86,6 +89,18 @@ def search_ebay():
 		print e 
 		return jsonify(e.response.dict())
 
+@app.route('/wal_search', methods=['GET'])
+def search_walmart():
+	searchword = request.args.get('q', '')
+	query = searchword.replace("%20", "+")
+	apiKey = "3qukdf87ghrr2mf55rx9j2k8"
+	try:
+		resp = requests.get("http://api.walmartlabs.com/v1/search", params={'apiKey': apiKey, 'query': query})
+		return jsonify({"items": resp.json()["items"]})
+	except Exception as e:
+		print('Search Failed: '+str(e))
+		input()
+
 @app.route('/test', methods=['GET'])
 def test_img_name():
 	parse_resp = requests.post('https://api.parse.com/1/files/'+img, headers=parse_header, data=open(img, 'rb'))
@@ -100,6 +115,7 @@ def test_img_name():
 		resp = requests.get(IMG_RESPONSE+token,headers=cloud_headers)
 	# print(resp.json()["name"])
 	return jsonify({"name": resp.json()["name"]})
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
