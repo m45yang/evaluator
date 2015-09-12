@@ -96,11 +96,14 @@ def search_walmart():
 	apiKey = "3qukdf87ghrr2mf55rx9j2k8"
 	try:
 		resp = requests.get("http://api.walmartlabs.com/v1/search", params={'apiKey': apiKey, 'query': query})
-		return jsonify({"items": resp.json()["items"]})
+		print resp.json()["items"][1]['name']
+		# names = [i['name'] for i in resp.json()["items"]]
+		return jsonify({"name": resp.json()["items"][1]['name'], "price": str(resp.json()["items"][1]['salePrice'])+" USD"})
 	except Exception as e:
 		print('Search Failed: '+str(e))
 		input()
 
+# test route
 @app.route('/test', methods=['GET'])
 def test_img_name():
 	parse_resp = requests.post('https://api.parse.com/1/files/'+img, headers=parse_header, data=open(img, 'rb'))
