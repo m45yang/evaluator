@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify
 import requests
 import uuid
+from ebaysdk.finding import Connection
+from ebaysdk.exception import ConnectionError
+
 app = Flask(__name__)
 
 IMG_REQUEST = 'https://api.cloudsightapi.com/image_requests/' # get token
 IMG_RESPONSE = 'https://api.cloudsightapi.com/image_responses/' # get the final recognition result with token
-
+EBAY_APPID = 'FuckYeah-3aa5-41ba-bd61-05ccd011d237'
 #--------------------------------------------------------------------------------------------------------------------------------------#
 #--------------------------------------------------------------------------------------------------------------------------------------#
 cloud_headers= {
@@ -67,6 +70,22 @@ def img_search():
 #	print resp.json()["name"]
 	return jsonify({"name": resp.json()["name"]})
 
+@app.route('/search', methods=['GET'])
+def search_ebay():
+	searchword = request.args.get('q', '')
+	try:
+		api = Connection(appid=EBAY_APPID, config_file=None)
+		response = api.execute('findItemsAdvanced', {'keywords': searchword})
+#		print int(response.dict()['searchResult']['_count']) == 0
+		if int(response.dict()['searchResult']['_count']) == 0:
+			return jsonify({"error":"No results found"})
+		item = response.reply.searchResult.item[0]
+#		print dir(item)
+		return jsonify({"name":item.title, "price": item.sellingStatus.currentPrice.value+' '+item.sellingStatus.currentPrice._currencyId})
+	except ConnectionError as e:
+		print e 
+		return jsonify(e.response.dict())
+
 @app.route('/test', methods=['GET'])
 def test_img_name():
 	parse_resp = requests.post('https://api.parse.com/1/files/'+img, headers=parse_header, data=open(img, 'rb'))
@@ -83,4 +102,4 @@ def test_img_name():
 	return jsonify({"name": resp.json()["name"]})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+	app.run(debug=True)
