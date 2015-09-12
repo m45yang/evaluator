@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect
 from ebaysdk.finding import Connection
 from ebaysdk.exception import ConnectionError
 import requests
@@ -6,8 +6,10 @@ import uuid
 import json
 import re
 import urllib2
+import goslate
 
 app = Flask(__name__)
+gs = goslate.Goslate()
 
 IMG_REQUEST = 'https://api.cloudsightapi.com/image_requests/' # get token
 IMG_RESPONSE = 'https://api.cloudsightapi.com/image_responses/' # get the final recognition result with token
@@ -50,7 +52,7 @@ parse_header = {
 	'Content-Type': 'image/jpeg'
 }
 #files={'image': open(img, 'rb')}, 
-img = 'evaluate_pic1.jpg'
+img = 'evaluate_pic.jpg'
 postData = {
 	#'image_request[remote_image_url]' : imageUrl,
 	'image_request[locale]': 'en',
@@ -73,7 +75,7 @@ def img_search():
 #	print(resp.json()["name"])
 	return jsonify({"name": resp.json()["name"]})
 
-@app.route('/search', methods=['GET'])
+@app.route('/ebay_search', methods=['GET'])
 def search_ebay():
 	searchword = request.args.get('q', '')
 	try:
@@ -102,6 +104,25 @@ def search_walmart():
 	except Exception as e:
 		print('Search Failed: '+str(e))
 		input()
+
+@app.route('/translate', methods=['GET'])
+def translate():
+	transwords = request.args.get('q', 'Please Type in Text!')
+	lang = request.args.get('lang', 'en')
+	translated = gs.translate(transwords, lang)
+	return jsonify({'text':translated})
+
+@app.route('/list_languages', methods=['GET'])
+def list_lang():
+	return jsonify(gs.get_languages())
+
+@app.route('/tts', methods=['GET'])
+def tts():
+	transwords = request.args.get('q', 'Please Type in Text!')
+	lang = request.args.get('lang', 'en')
+	url = "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q={}&tl={}&total=1&idx=0&textlen={}"
+	url = url.format(transwords, lang, len(transwords))
+	return redirect(url, code=302)
 
 # test route
 @app.route('/test', methods=['GET'])
