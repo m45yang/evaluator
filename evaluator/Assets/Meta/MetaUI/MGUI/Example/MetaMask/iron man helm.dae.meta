@@ -42,12 +42,48 @@ ModelImporter:
     2300000: mesh1
     2300002: mesh2
     2300004: mesh3
+    2300006: mesh10
+    2300008: mesh11
+    2300010: mesh12
+    2300012: mesh13
+    2300014: mesh14
+    2300016: mesh15
+    2300018: mesh4
+    2300020: mesh5
+    2300022: mesh6
+    2300024: mesh7
+    2300026: mesh8
+    2300028: mesh9
     3300000: mesh1
     3300002: mesh2
     3300004: mesh3
+    3300006: mesh10
+    3300008: mesh11
+    3300010: mesh12
+    3300012: mesh13
+    3300014: mesh14
+    3300016: mesh15
+    3300018: mesh4
+    3300020: mesh5
+    3300022: mesh6
+    3300024: mesh7
+    3300026: mesh8
+    3300028: mesh9
     4300000: mesh1
     4300002: mesh2
     4300004: mesh3
+    4300006: mesh4
+    4300008: mesh5
+    4300010: mesh6
+    4300012: mesh7
+    4300014: mesh8
+    4300016: mesh9
+    4300018: mesh10
+    4300020: mesh11
+    4300022: mesh12
+    4300024: mesh13
+    4300026: mesh14
+    4300028: mesh15
     9500000: //RootNode
   materials:
     importMaterials: 1
