@@ -7,6 +7,8 @@ import json
 import re
 import urllib2
 import goslate
+import StringIO
+from PIL import Image
 
 app = Flask(__name__)
 gs = goslate.Goslate()
@@ -33,7 +35,7 @@ req_headers = {
 	"Accept-Language": "en-US,en;q=0.8",  
 	"User-Agent": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2507.0 Safari/537.36",  
 	"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",  
-	"Accept": "*/*",  
+	"Accept": "*/*",
 	"Referer": "http://cloudsightapi.com/api",  
 	"Connection": "keep-alive"
 }
@@ -52,7 +54,7 @@ parse_header = {
 	'Content-Type': 'image/jpeg'
 }
 #files={'image': open(img, 'rb')}, 
-img = 'evaluate_pic.jpg'
+img = 'tested.jpg'
 postData = {
 	#'image_request[remote_image_url]' : imageUrl,
 	'image_request[locale]': 'en',
@@ -62,7 +64,21 @@ postData = {
 @app.route('/img', methods=['POST'])
 def img_search():
 	img_data = request.files['img_file']
-	parse_resp = requests.post('https://api.parse.com/1/files/'+str(uuid.uuid4())+'.jpg', headers=parse_header, data=img_data)
+	
+	stream = StringIO.StringIO(img_data)
+	img = Image.open(img_data)
+
+	width, height = img.size 
+	width /= 2
+	left = (width-326)/2
+	img = img.crop((left,30,left+326,height-35))
+
+	file_data = StringIO.StringIO()
+	img.save(file_data,quality=95, format="JPEG")
+	contents = file_data.getvalue()
+	file_data.close()
+
+	parse_resp = requests.post('https://api.parse.com/1/files/'+str(uuid.uuid4())+'.jpg', headers=parse_header, data=contents)
 	img_file_url = parse_resp.json()['url']
 	
 	req_data["image_request[remote_image_url]"] = img_file_url
