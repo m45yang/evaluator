@@ -47,7 +47,7 @@ parse_header = {
 	'Content-Type': 'image/jpeg'
 }
 #files={'image': open(img, 'rb')}, 
-img = 'test_pic.jpg'
+img = 'evaluate_pic1.jpg'
 postData = {
 	#'image_request[remote_image_url]' : imageUrl,
 	'image_request[locale]': 'en',
@@ -67,7 +67,7 @@ def img_search():
 	resp = requests.get(IMG_RESPONSE+token,headers=cloud_headers)
 	while resp.json()['status'] != 'completed':
 		resp = requests.get(IMG_RESPONSE+token,headers=cloud_headers)
-#	print resp.json()["name"]
+#	print(resp.json()["name"])
 	return jsonify({"name": resp.json()["name"]})
 
 @app.route('/search', methods=['GET'])
@@ -98,7 +98,7 @@ def test_img_name():
 	resp = requests.get(IMG_RESPONSE+token,headers=cloud_headers)
 	while resp.json()['status'] != 'completed':
 		resp = requests.get(IMG_RESPONSE+token,headers=cloud_headers)
-	print resp.json()["name"]
+	# print(resp.json()["name"])
 	return jsonify({"name": resp.json()["name"]})
 
 if __name__ == "__main__":
