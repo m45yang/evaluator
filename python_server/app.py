@@ -60,6 +60,7 @@ postData = {
 	'image_request[locale]': 'en',
 	'image_request[language]': 'en',
 }
+colours = ['red', 'orange', 'yellow', 'grey', 'green', 'blue', 'Brown', 'grass', 'black', 'white', 'pink', 'golden']
 
 @app.route('/img', methods=['POST'])
 def img_search():
@@ -88,12 +89,16 @@ def img_search():
 	resp = requests.get(IMG_RESPONSE+token,headers=cloud_headers)
 	while resp.json()['status'] != 'completed':
 		resp = requests.get(IMG_RESPONSE+token,headers=cloud_headers)
-#	print(resp.json()["name"])
-	return jsonify({"name": resp.json()["name"]})
+	name = resp.json()["name"]
+	#text = nltk.word_tokenize(name)
+	#text = ' '.join([i[0] for i in nltk.pos_tag(text) if i[1] == 'NN'])
+	return jsonify({"name": name})
 
 @app.route('/ebay_search', methods=['GET'])
 def search_ebay():
 	searchword = request.args.get('q', '')
+	for i in colours:
+		searchword = searchword.replace(i, '')
 	try:
 		api = Connection(appid=EBAY_APPID, config_file=None)
 		response = api.execute('findItemsAdvanced', {'keywords': searchword})
@@ -111,6 +116,8 @@ def search_ebay():
 def search_walmart():
 	searchword = request.args.get('q', '')
 	query = searchword.replace("%20", "+")
+	for i in colours:
+		searchword = searchword.replace(i, '')
 	apiKey = "3qukdf87ghrr2mf55rx9j2k8"
 	try:
 		resp = requests.get("http://api.walmartlabs.com/v1/search", params={'apiKey': apiKey, 'query': query})
