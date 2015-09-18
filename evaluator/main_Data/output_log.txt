@@ -1,0 +1,87 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Meta.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Meta.dll into Unity Child Domain
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\MetaPackages.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\MetaPackages.dll into Unity Child Domain
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Vectrosity.dll (this message is harmless)
+Loading C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Vectrosity.dll into Unity Child Domain
+- Completed reload, in  0.043 seconds
+desktop: 1920x1080 29Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\System.dll (this message is harmless)
+ButtonBoxFillOnly.fw (UnityEngine.Sprite)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 19c -> priority: 1 
+  Thread -> id: 1aa4 -> priority: 1 
+redbull energy drink can
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Finished Uploading Screenshot
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\System.Configuration.dll (this message is harmless)
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\System.Xml.dll (this message is harmless)
+Platform assembly: C:\Users\matthewyang92\Desktop\evaluator\evaluator\main_Data\Managed\Mono.Security.dll (this message is harmless)
+{
+  "name": "Red Bull Energy Drinks, 8.3 fl oz, 4 pack", 
+  "price": "6.24 USD"
+}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+{
+  "name": "# RED BULL Marc Marques France LTD * FULL NEW Energydrink energy drink can #", 
+  "price": "9.99 USD"
+}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+vitaminwater zero xxx
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Finished Uploading Screenshot
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+{
+  "name": "Propel Zero Calories Kiwi Strawberry Water Beverage Mix with Vitamins, 10 count, .07 oz", 
+  "price": "2.0 USD"
+}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+{
+  "name": "New & Sealed 2 Pk Vitaminwater Zero Drops Xxx Acai-Blueberry Pomegranate", 
+  "price": "17.75 USD"
+}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+

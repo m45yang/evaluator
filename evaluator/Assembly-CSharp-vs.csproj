@@ -47,6 +47,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CameraScript.cs" />
+     <Compile Include="Assets\EbayPriceFunction.cs" />
+     <Compile Include="Assets\HudNameFunction.cs" />
+     <Compile Include="Assets\LangScript.cs" />
+     <Compile Include="Assets\LogoScript.cs" />
+     <Compile Include="Assets\MenuStartScript.cs" />
      <Compile Include="Assets\Meta\Apps\Meta SDK Guide\Scripts\GazeableTestScript.cs" />
      <Compile Include="Assets\Meta\Apps\Meta SDK Guide\Scripts\HudCube.cs" />
      <Compile Include="Assets\Meta\Apps\Meta SDK Guide\Scripts\OnGrabTestScript.cs" />
@@ -55,6 +60,10 @@
      <Compile Include="Assets\Meta\Apps\Meta SDK Guide\Scripts\Quit.cs" />
      <Compile Include="Assets\Meta\Examples\Scripts\CameraFeedExample.cs" />
      <Compile Include="Assets\Meta\Examples\Scripts\MarkerTrackerExample.cs" />
+     <Compile Include="Assets\MovingMenu.cs" />
+     <Compile Include="Assets\NameScript.cs" />
+     <Compile Include="Assets\TestScript.cs" />
+     <Compile Include="Assets\textScript.cs" />
      <None Include="Assets\MetaPackages\HighlightingSystem\Resources\HighlightingBlur.shader" />
      <None Include="Assets\MetaPackages\LeanTween\LeanTween-ReadMe.txt" />
      <None Include="Assets\MetaPackages\HighlightingSystem\Resources\HighlightingStencilTransparent.shader" />
@@ -77,17 +86,21 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Meta">
- <HintPath>C:/Users/Jake/Desktop/Evaluator/evaluator/Assets/Meta/Meta.dll</HintPath>
+ <HintPath>C:/Users/matthewyang92/Desktop/evaluator/evaluator/Assets/Meta/Meta.dll</HintPath>
  </Reference>
  <Reference Include="MetaPackages">
- <HintPath>C:/Users/Jake/Desktop/Evaluator/evaluator/Assets/MetaPackages/MetaPackages.dll</HintPath>
+ <HintPath>C:/Users/matthewyang92/Desktop/evaluator/evaluator/Assets/MetaPackages/MetaPackages.dll</HintPath>
  </Reference>
  <Reference Include="Vectrosity">
- <HintPath>C:/Users/Jake/Desktop/Evaluator/evaluator/Assets/MetaPackages/Vectrosity/Vectrosity.dll</HintPath>
+ <HintPath>C:/Users/matthewyang92/Desktop/evaluator/evaluator/Assets/MetaPackages/Vectrosity/Vectrosity.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{685F5DE6-DDBB-46DD-532C-94264094CC93}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

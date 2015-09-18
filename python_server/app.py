@@ -9,7 +9,9 @@ import urllib2
 import goslate
 import StringIO
 from PIL import Image
+import logging
 
+log = logging.getLogger
 app = Flask(__name__)
 gs = goslate.Goslate()
 
@@ -60,12 +62,11 @@ postData = {
 	'image_request[locale]': 'en',
 	'image_request[language]': 'en',
 }
-colours = ['red', 'orange', 'yellow', 'grey', 'green', 'blue', 'Brown', 'grass', 'black', 'white', 'pink', 'golden']
+colours = ['red', 'orange', 'yellow', 'grey', 'green', 'blue', 'brown', 'grass', 'black', 'white', 'pink', 'golden']
 
 @app.route('/img', methods=['POST'])
 def img_search():
-	img_data = request.files['img_file']
-	
+	img_data = request.files['fileUpload']
 	stream = StringIO.StringIO(img_data)
 	img = Image.open(img_data)
 
@@ -81,7 +82,7 @@ def img_search():
 
 	parse_resp = requests.post('https://api.parse.com/1/files/'+str(uuid.uuid4())+'.jpg', headers=parse_header, data=contents)
 	img_file_url = parse_resp.json()['url']
-	
+
 	req_data["image_request[remote_image_url]"] = img_file_url
 	resp = requests.post(IMG_REQUEST, headers=req_headers, data=req_data)
 	token = resp.json()['token']
@@ -92,7 +93,9 @@ def img_search():
 	name = resp.json()["name"]
 	#text = nltk.word_tokenize(name)
 	#text = ' '.join([i[0] for i in nltk.pos_tag(text) if i[1] == 'NN'])
-	return jsonify({"name": name})
+	print name
+	write_to_file(name)
+	return name;
 
 @app.route('/ebay_search', methods=['GET'])
 def search_ebay():
@@ -107,6 +110,12 @@ def search_ebay():
 			return jsonify({"error":"No results found"})
 		item = response.reply.searchResult.item[0]
 #		print dir(item)
+		pro = "\n\n\n---------------------------------\n"
+		pro += "Ebay item name:" + item.title +"\n"
+		pro += "Price: " + item.sellingStatus.currentPrice.value + item.sellingStatus.currentPrice._currencyId
+		pro += "\n---------------------------------\n"
+		write_to_file(pro)
+		print pro
 		return jsonify({"name":item.title, "price": item.sellingStatus.currentPrice.value+' '+item.sellingStatus.currentPrice._currencyId})
 	except ConnectionError as e:
 		print e 
@@ -123,6 +132,12 @@ def search_walmart():
 		resp = requests.get("http://api.walmartlabs.com/v1/search", params={'apiKey': apiKey, 'query': query})
 		print resp.json()["items"][1]['name']
 		# names = [i['name'] for i in resp.json()["items"]]
+		pro = "\n\n\n---------------------------------\n"
+		pro += "Walmart item name: " + resp.json()["items"][1]['name']+"\n"
+		pro += "Price: "+ str(resp.json()["items"][1]['salePrice'])+" USD"
+		pro += "\n---------------------------------\n"
+		write_to_file(pro)
+		print pro
 		return jsonify({"name": resp.json()["items"][1]['name'], "price": str(resp.json()["items"][1]['salePrice'])+" USD"})
 	except Exception as e:
 		print('Search Failed: '+str(e))
@@ -161,8 +176,13 @@ def test_img_name():
 	while resp.json()['status'] != 'completed':
 		resp = requests.get(IMG_RESPONSE+token,headers=cloud_headers)
 	# print(resp.json()["name"])
+	write_to_file(resp.json()["name"])
 	return jsonify({"name": resp.json()["name"]})
 
+
+def write_to_file(data):
+	with open('log.txt', 'a+') as f:
+		f.write(data)
 
 if __name__ == "__main__":
 	app.run(debug=True)
